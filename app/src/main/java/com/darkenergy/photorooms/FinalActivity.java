@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.darkenergy.photorooms.databinding.ActivityFinalBinding;
 import com.dsphotoeditor.sdk.activity.DsPhotoEditorActivity;
@@ -15,7 +17,7 @@ import com.dsphotoeditor.sdk.utils.DsPhotoEditorConstants;
 
 public class FinalActivity extends AppCompatActivity {
     ActivityFinalBinding binding;
-    ImageView imageView;
+    ImageView imageView, backbtn, homebtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +26,25 @@ public class FinalActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         imageView=findViewById(R.id.imageView);
 
-        Intent dsPhotoEditorIntent = new Intent(this, DsPhotoEditorActivity.class);
+        backbtn=findViewById(R.id.backImage);
+        homebtn=findViewById(R.id.homeImage);
 
+        homebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FinalActivity.this,MainActivity.class));
+                Toast.makeText(FinalActivity.this, "Home Page", Toast.LENGTH_SHORT).show();
+            }
+        });
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FinalActivity.this,MainActivity.class));
+                Toast.makeText(FinalActivity.this, "Back", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Intent dsPhotoEditorIntent = new Intent(this, DsPhotoEditorActivity.class);
 
         dsPhotoEditorIntent.setData(imageUri);
         dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_OUTPUT_DIRECTORY, "Photo xRooms");
