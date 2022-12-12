@@ -3,6 +3,7 @@
     package="com.darkenergy.photorooms">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 
@@ -14,9 +15,10 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/Theme.Photorooms">
+
         <activity
             android:name=".FinalActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SpActivity"
             android:exported="true">
@@ -72,6 +74,16 @@
             android:screenOrientation="portrait"
 
             android:theme="@android:style/Theme.Holo.NoActionBar" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.anni.shareimage.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths" />
+        </provider>
 
     </application>
 
